@@ -14,6 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet var greenView: UIView!
     @IBOutlet var lightsButton: UIButton!
     
+    enum Lights {
+        case red
+        case yellow
+        case green
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getNewShape(colorView: redView)
@@ -28,6 +34,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func lightsChangingButton() {
+        
         }
 }
 

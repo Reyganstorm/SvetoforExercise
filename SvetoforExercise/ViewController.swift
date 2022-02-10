@@ -14,10 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet var greenView: UIView!
     @IBOutlet var lightsButton: UIButton!
     
-    enum Lights {
-        case red
-        case yellow
-        case green
+    enum Lights: Int {
+        case red = 1
+        case yellow = 2
+        case green = 3
     }
     
     override func viewDidLoad() {
@@ -34,7 +34,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func lightsChangingButton() {
-        
         }
 }
 

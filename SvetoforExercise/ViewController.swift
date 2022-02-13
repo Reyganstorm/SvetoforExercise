@@ -14,10 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet var greenView: UIView!
     @IBOutlet var lightsButton: UIButton!
     
-    enum Lights: Int {
-        case red = 1
-        case yellow = 2
-        case green = 3
+    enum Lights{
+        case red
+        case yellow
+        case green
     }
     
     override func viewDidLoad() {
@@ -28,12 +28,35 @@ class ViewController: UIViewController {
         lightsButton.layer.cornerRadius = 10
     }
     
+    var lightOfSvetophor = Lights.green
+    func getNewLight(for light: Lights){
+        switch light {
+        case .red:
+            redView.alpha = 1
+            yellowView.alpha = 0.3
+            greenView.alpha = 0.3
+            lightOfSvetophor = .yellow
+        case .yellow:
+            yellowView.alpha = 1
+            redView.alpha = 0.3
+            greenView.alpha = 0.3
+            lightOfSvetophor = .green
+        case .green:
+            greenView.alpha = 1
+            redView.alpha = 0.3
+            yellowView.alpha = 0.3
+            lightOfSvetophor = .red
+        }
+    }
+    
     func getNewShape(colorView: UIView) {
         colorView.layer.cornerRadius = colorView.frame.height/2
-        colorView.alpha = 0.3
     }
 
     @IBAction func lightsChangingButton() {
-        }
+        lightsButton.setTitle("Next", for: .normal)
+        getNewLight(for: lightOfSvetophor)
+        
+    }
 }
 

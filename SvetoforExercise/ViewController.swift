@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         lightsButton.layer.cornerRadius = 10
     }
     
-    var lightOfSvetophor = Lights.green
+    var lightOfSvetophor = Lights.red
     func getNewLight(for light: Lights){
         switch light {
         case .red:

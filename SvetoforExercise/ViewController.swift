@@ -7,54 +7,63 @@
 
 import UIKit
 
+enum Lights{
+        case red
+        case yellow
+        case green
+    }
+
 class ViewController: UIViewController {
 
     @IBOutlet var redView: UIView!
     @IBOutlet var yellowView: UIView!
     @IBOutlet var greenView: UIView!
+    
     @IBOutlet var lightsButton: UIButton!
     
-    enum Lights{
-        case red
-        case yellow
-        case green
-    }
+    private var currentLight = Lights.red
+    private let lightIsOn: CGFloat = 1
+    private let lightIsOff: CGFloat = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lightsButton.layer.cornerRadius = 10
+        
+        redView.alpha = lightIsOff
+        yellowView.alpha = lightIsOff
+        greenView.alpha = lightIsOff
+    }
+    
+    override func viewWillLayoutSubviews() {
         getNewShape(colorView: redView)
         getNewShape(colorView: yellowView)
         getNewShape(colorView: greenView)
-        lightsButton.layer.cornerRadius = 10
-    }
-    
-    var lightOfSvetophor = Lights.red
-    func getNewLight(for light: Lights){
-        switch light {
-        case .red:
-            redView.alpha = 1
-            greenView.alpha = 0.3
-            lightOfSvetophor = .yellow
-        case .yellow:
-            yellowView.alpha = 1
-            redView.alpha = 0.3
-            lightOfSvetophor = .green
-        case .green:
-            greenView.alpha = 1
-            yellowView.alpha = 0.3
-            lightOfSvetophor = .red
-        }
     }
     
     func getNewShape(colorView: UIView) {
-        colorView.layer.cornerRadius = colorView.frame.height/2
-        colorView.alpha = 0.3
+        colorView.layer.cornerRadius = colorView.frame.width/2
     }
 
     @IBAction func lightsChangingButton() {
-        lightsButton.setTitle("Next", for: .normal)
-        getNewLight(for: lightOfSvetophor)
+        if lightsButton.currentTitle == "START" {
+            lightsButton.setTitle("Next", for: .normal)
+        }
         
+        switch currentLight {
+        case .red:
+            redView.alpha = lightIsOn
+            greenView.alpha = lightIsOff
+            currentLight = .yellow
+        case .yellow:
+            yellowView.alpha = lightIsOn
+            redView.alpha = lightIsOff
+            currentLight = .green
+        case .green:
+            greenView.alpha = lightIsOn
+            yellowView.alpha = lightIsOff
+            currentLight = .red
+        }
     }
 }
 

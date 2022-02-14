@@ -33,17 +33,14 @@ class ViewController: UIViewController {
         switch light {
         case .red:
             redView.alpha = 1
-            yellowView.alpha = 0.3
             greenView.alpha = 0.3
             lightOfSvetophor = .yellow
         case .yellow:
             yellowView.alpha = 1
             redView.alpha = 0.3
-            greenView.alpha = 0.3
             lightOfSvetophor = .green
         case .green:
             greenView.alpha = 1
-            redView.alpha = 0.3
             yellowView.alpha = 0.3
             lightOfSvetophor = .red
         }
@@ -51,6 +48,7 @@ class ViewController: UIViewController {
     
     func getNewShape(colorView: UIView) {
         colorView.layer.cornerRadius = colorView.frame.height/2
+        colorView.alpha = 0.3
     }
 
     @IBAction func lightsChangingButton() {
